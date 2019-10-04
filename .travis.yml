@@ -1,0 +1,35 @@
+# we only need git and docker, environment is defined by Dockerfile
+language: minimal
+# our pipeline consists of three stages, next stages will run if previous stages passes:
+# unit-test -> integration-test -> deploy
+# Details on how the image is built and deployed is in each script
+jobs:
+  include:
+    - stage: unit-test
+      script:
+        # TODO: remove this script after demo done
+        # Running unit-test for hello-world example!
+        - ./scripts/unit-tests-user-auth.sh
+        # Running unit-test for User/Authservice!
+        - ./scripts/unit-tests-user-auth.sh
+        # Running unit-test for Files service!
+        - ./scripts/unit-tests-files.sh
+    - stage: integration-test
+      script:
+        # Running integration test!
+        - ./scripts/integration-tests.sh
+    - stage: deploy
+      script:
+        # Deploying to cloud!
+        - ./scripts/deploy-to-azure.sh
+        - ./scripts/deploy-to-google.sh
+stages:
+  - name: unit-test
+    # only for PRs
+    if: type = pull_request
+  - name: integration-test
+  # only for PRs
+    if: type = pull_request
+  - name: deploy
+  # only when new commits pushed to master
+    if: type push AND branch = master
