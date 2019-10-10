@@ -1,5 +1,5 @@
-# we only need git and docker, environment is defined by Dockerfile
 language: minimal
+# we only need git and docker, environment is defined by Dockerfile
 # our pipeline consists of three stages, next stages will run if previous stages passes:
 # unit-test -> integration-test -> deploy
 # Details on how the image is built and deployed is in each script
