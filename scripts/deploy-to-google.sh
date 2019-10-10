@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 # TODO: run Dockerfile to build and run unit-tests
 
