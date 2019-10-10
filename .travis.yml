@@ -19,4 +19,4 @@ stages:
   - name: integration-test
     if: type = pull_request
   - name: deploy
-    if: type push AND branch = master
+    if: type = push AND branch = master
